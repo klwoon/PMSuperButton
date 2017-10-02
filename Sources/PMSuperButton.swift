@@ -172,6 +172,8 @@ open class PMSuperButton: UIButton {
         }
     }
     
+    @IBInspectable open var transitionDuration: TimeInterval = 0.5
+    
     //MARK: - Action Closure
     private var action: (() -> Void)?
     
@@ -196,7 +198,7 @@ open class PMSuperButton: UIButton {
         self.isUserInteractionEnabled = userInteraction
         indicator.isUserInteractionEnabled = false
         indicator.center = CGPoint(x: self.bounds.size.width/2, y: self.bounds.size.height/2)
-        UIView.transition(with: self, duration: 0.5, options: .curveEaseOut, animations: {
+        UIView.transition(with: self, duration: transitionDuration, options: .curveEaseOut, animations: {
             self.titleLabel?.alpha = 0.0
             self.imageAlpha = 0.0
         }) { (finished) in
@@ -213,7 +215,7 @@ open class PMSuperButton: UIButton {
         self.isUserInteractionEnabled = true
         self.indicator.stopAnimating()
         self.indicator.removeFromSuperview()
-        UIView.transition(with: self, duration: 0.5, options: .curveEaseIn, animations: {
+        UIView.transition(with: self, duration: transitionDuration, options: .curveEaseIn, animations: {
             self.titleLabel?.alpha = 1.0
             self.imageAlpha = 1.0
         }) { (finished) in
